@@ -13,10 +13,10 @@ import cn.mercury9.roa.forum.data.config.AppConfig
 import cn.mercury9.roa.forum.data.config.ThemeConfig
 import cn.mercury9.roa.forum.data.storage.DataStorage
 import cn.mercury9.roa.forum.data.storage.KVDataStorage
-import cn.mercury9.roa.forum.data.viewModel.AppViewModel.NavigationRoute.*
+import cn.mercury9.roa.forum.data.viewModel.AppViewModel.AppWindowNavRoute.*
 import cn.mercury9.roa.forum.ui.theme.AppTheme
 import cn.mercury9.roa.forum.ui.window.main.MainWindow
-import cn.mercury9.roa.forum.ui.window.settings.SettingWindow
+import cn.mercury9.roa.forum.ui.window.settings.SettingsWindow
 
 class AppViewModel : ViewModel() {
   private val appConfigManager: DataStorage<AppConfig> = KVDataStorage(
@@ -61,17 +61,17 @@ class AppViewModel : ViewModel() {
     Compact,
   }
 
-  enum class NavigationRoute {
-    MainScreen,
-    SettingScreen,
+  enum class AppWindowNavRoute {
+    Main,
+    Settings,
   }
 
   companion object {
     @Composable
-    fun ComposableOfRoute(route: NavigationRoute, appViewModel: AppViewModel) {
+    fun ComposableOfRoute(route: AppWindowNavRoute, appViewModel: AppViewModel) {
       when (route) {
-        MainScreen -> MainWindow(appViewModel)
-        SettingScreen -> SettingWindow(appViewModel)
+        Main -> MainWindow(appViewModel)
+        Settings -> SettingsWindow(appViewModel)
       }
     }
   }

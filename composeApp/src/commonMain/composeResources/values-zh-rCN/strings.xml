@@ -1,6 +1,8 @@
 <resources>
     <string name="app_name">元点论坛</string>
 
+    <string name="button_back">返回</string>
+
     <string name="title_screen_home">主页</string>
 
     <string name="title_screen_me">我的</string>

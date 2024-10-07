@@ -12,9 +12,9 @@ fun WindowNavigation(appViewModel: AppViewModel) {
 
   NavHost(
     navController = appViewModel.navController,
-    startDestination = AppViewModel.NavigationRoute.MainScreen.name,
+    startDestination = AppViewModel.AppWindowNavRoute.Main.name,
   ) {
-    for (route in AppViewModel.NavigationRoute.entries) {
+    for (route in AppViewModel.AppWindowNavRoute.entries) {
       composable(route.name) {
         AppViewModel.ComposableOfRoute(route, appViewModel)
       }

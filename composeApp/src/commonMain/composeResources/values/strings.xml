@@ -1,6 +1,8 @@
 <resources>
     <string name="app_name">ROA Forum</string>
 
+    <string name="button_back">Back</string>
+
     <string name="title_screen_home">Home</string>
 
     <string name="title_screen_me">Me</string>

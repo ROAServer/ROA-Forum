@@ -212,7 +212,7 @@ private object MeScreenComponionts {
           Res.string.title_window_setting.string,
           Res.drawable.settings_24px.painter,
         ) {
-          appViewModel.navController.navigate(AppViewModel.NavigationRoute.SettingScreen.name)
+          appViewModel.navController.navigate(AppViewModel.AppWindowNavRoute.Settings.name)
         }
       }
     }
