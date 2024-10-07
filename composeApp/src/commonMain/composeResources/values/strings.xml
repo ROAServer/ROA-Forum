@@ -1,0 +1,11 @@
+<resources>
+    <string name="app_name">ROA Forum</string>
+
+    <string name="title_screen_home">Home</string>
+
+    <string name="title_screen_me">Me</string>
+    <string name="hint_user_bio_empty">This user has no bio yet...</string>
+
+    <string name="title_window_setting">Settings</string>
+    <string name="title_setting_theme">Theme</string>
+</resources>

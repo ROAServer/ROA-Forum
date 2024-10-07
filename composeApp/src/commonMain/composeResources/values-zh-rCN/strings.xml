@@ -1,0 +1,11 @@
+<resources>
+    <string name="app_name">元点论坛</string>
+
+    <string name="title_screen_home">主页</string>
+
+    <string name="title_screen_me">我的</string>
+    <string name="hint_user_bio_empty">这个用户还没有简介...</string>
+
+    <string name="title_window_setting">设置</string>
+    <string name="title_setting_theme">主题</string>
+</resources>
