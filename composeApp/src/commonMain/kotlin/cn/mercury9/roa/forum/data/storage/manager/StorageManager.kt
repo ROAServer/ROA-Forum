@@ -1,6 +1,7 @@
 package cn.mercury9.roa.forum.data.storage.manager
 
 import kotlinx.serialization.KSerializer
+import kotlin.properties.ReadWriteProperty
 
 interface StorageManager {
   fun <T> getValueOrNull(
@@ -13,6 +14,12 @@ interface StorageManager {
     key: String,
     value: T,
   )
+
+  fun <T> value(
+    serializer: KSerializer<T>,
+    key: String,
+    defaultValue: T
+  ): ReadWriteProperty<Any?, T>
 
   fun hasKey(key: String): Boolean
 

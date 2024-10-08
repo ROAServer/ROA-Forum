@@ -27,15 +27,13 @@ fun App(
   appViewModel.appLayoutType = appLayoutType
 
   if (appViewModel.appConfig.followSystemDarkModeSettingWhenStartApp) {
-    appViewModel.themeConfig.let { config ->
-      appViewModel.themeConfig = config.copy(
-        darkTheme = isSystemInDarkTheme(),
-      )
-    }
+    appViewModel.setThemeConf(appViewModel.themeConfig.copy(
+      darkTheme = isSystemInDarkTheme(),
+    ))
   }
 
   ThemeProvider(
-    appViewModel.appTheme,
+    appViewModel.themeConfig.appTheme,
   ) {
     Surface(color = MaterialTheme.colorScheme.background) {
       Column {

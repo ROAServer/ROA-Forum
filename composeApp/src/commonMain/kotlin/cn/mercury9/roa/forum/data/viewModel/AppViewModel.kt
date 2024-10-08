@@ -12,46 +12,50 @@ import cn.mercury9.roa.forum.Constants
 import cn.mercury9.roa.forum.data.config.AppConfig
 import cn.mercury9.roa.forum.data.config.ThemeConfig
 import cn.mercury9.roa.forum.data.storage.DataStorage
-import cn.mercury9.roa.forum.data.storage.KVDataStorage
+import cn.mercury9.roa.forum.data.storage.DefaultDataStorage
 import cn.mercury9.roa.forum.data.viewModel.AppViewModel.AppWindowNavRoute.*
-import cn.mercury9.roa.forum.ui.theme.AppTheme
 import cn.mercury9.roa.forum.ui.window.main.MainWindow
 import cn.mercury9.roa.forum.ui.window.settings.SettingsWindow
 
 class AppViewModel : ViewModel() {
-  private val appConfigManager: DataStorage<AppConfig> = KVDataStorage(
+  private val appConfigManager: DefaultDataStorage<AppConfig> = DefaultDataStorage(
     "${Constants.APP_PACKAGE}:config.app:",
     AppConfig.serializer(),
   ) {
     AppConfig.default()
   }
 
-  var appConfig: AppConfig
-    get() = appConfigManager.get()
-    set(value) { appConfigManager.set(value) }
+  var appConfig by mutableStateOf(appConfigManager.get())
+    private set
 
-  private val themeConfigManager: DataStorage<ThemeConfig> = KVDataStorage(
+  fun setAppConf(config: AppConfig) {
+    appConfigManager.set(config)
+    appConfig = appConfigManager.get()
+  }
+
+  private val themeConfigManager: DataStorage<ThemeConfig> = DefaultDataStorage(
     "${Constants.APP_PACKAGE}:config.theme:",
-    ThemeConfig.serializer()
+    ThemeConfig.serializer(),
   ) {
     ThemeConfig.default()
   }
 
-  var themeConfig: ThemeConfig
-    get() = themeConfigManager.get()
-    set(value) {
-      themeConfigManager.set(value)
-      appTheme = value.appTheme
-    }
+  var themeConfig: ThemeConfig by mutableStateOf(themeConfigManager.get())
+    private set
+
+  fun setThemeConf(config: ThemeConfig) {
+    themeConfigManager.set(config)
+    themeConfig = themeConfigManager.get()
+  }
 
   var appLayoutType: AppLayoutType by mutableStateOf(
     AppLayoutType.Compact
   )
 
-  var appTheme: AppTheme by mutableStateOf(
-    themeConfigManager.get().appTheme
-  )
-    private set
+//  var appTheme: AppTheme by mutableStateOf(
+//    themeConfig.appTheme
+//  )
+//    private set
 
   lateinit var navController: NavHostController
 

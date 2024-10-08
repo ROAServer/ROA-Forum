@@ -10,4 +10,7 @@
 
     <string name="title_window_setting">Settings</string>
     <string name="title_setting_theme">Theme</string>
+    <string name="label_setting_theme_dark_follow_system_when_start">Follow system dark mode setting when start app.</string>
+    <string name="label_setting_theme_dark">Dark Mode</string>
+    <string name="label_setting_theme_type">Theme Type</string>
 </resources>

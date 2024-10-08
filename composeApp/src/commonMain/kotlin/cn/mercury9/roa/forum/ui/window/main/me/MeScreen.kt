@@ -66,8 +66,8 @@ fun MeScreen(
       .fillMaxSize()
       .padding(8.dp),
   ) {
-    MeScreenComponionts.QuickSettingsBar(appViewModel)
-    MeScreenComponionts.BasicUserInfo(
+    MeScreenComponents.QuickSettingsBar(appViewModel)
+    MeScreenComponents.BasicUserInfo(
       User(
         0uL, "example_user",
         "Example User",
@@ -75,11 +75,11 @@ fun MeScreen(
         "Just an example user.\n" + "E-mail: example_user@example.com\n" + "Phone: 555-1919-8100",
       )
     )
-    MeScreenComponionts.QuickActionsList(appViewModel)
+    MeScreenComponents.QuickActionsList(appViewModel)
   }
 }
 
-private object MeScreenComponionts {
+private object MeScreenComponents {
   @Composable
   fun QuickSettingsBar(
     appViewModel: AppViewModel
@@ -101,7 +101,7 @@ private object MeScreenComponionts {
           { showThemeChooser = false },
         ) {
           for (theme in ThemeType.entries) {
-            val selected = appViewModel.appTheme.themeType == theme
+            val selected = appViewModel.themeConfig.appTheme.themeType == theme
             DropdownMenuItem(
               text = { Text(text = theme.toString()) },
               enabled = !selected,
@@ -111,9 +111,9 @@ private object MeScreenComponionts {
                 }
               },
               onClick = {
-                appViewModel.themeConfig = appViewModel.appTheme.copy(
+                appViewModel.setThemeConf(appViewModel.themeConfig.appTheme.copy(
                   themeType = theme
-                ).toThemeConfig()
+                ).toThemeConfig())
               }
             )
           }
@@ -121,13 +121,13 @@ private object MeScreenComponionts {
       } // end: choose theme
 
       IconButton({
-          appViewModel.themeConfig = appViewModel.appTheme.copy(
-            darkTheme = !appViewModel.appTheme.darkTheme
-          ).toThemeConfig()
+          appViewModel.setThemeConf(appViewModel.themeConfig.appTheme.copy(
+            darkTheme = !appViewModel.themeConfig.appTheme.darkTheme
+          ).toThemeConfig())
       }) {
         Icon(
           painter = (
-            if (appViewModel.appTheme.darkTheme) {
+            if (appViewModel.themeConfig.appTheme.darkTheme) {
               Res.drawable.light_mode_24px
             } else {
               Res.drawable.dark_mode_24px
@@ -245,5 +245,3 @@ private object MeScreenComponionts {
     }
   }
 }
-
-
