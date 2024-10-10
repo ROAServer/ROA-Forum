@@ -23,13 +23,18 @@ logback = "1.5.6"
 kotlinx-coroutines = "1.8.1"
 kotlinx-serialization = "1.7.3"
 kotlinx-serialization-plugin = "2.0.20"
+kotlinx-io = "0.5.4"
 kotlinx-timedate = "0.6.0"
+
+tomlkt = "0.4.0"
 
 ktor = "2.3.12"
 exposed = "0.54.0"
 
 crypto = "0.5.3"
 multiplatform-settings = "1.2.0"
+haze = "0.7.3"
+
 startupRuntime = "1.2.0"
 
 [libraries]
@@ -62,7 +67,10 @@ kotlinx-coroutines-android = { group = "org.jetbrains.kotlinx", name = "kotlinx-
 kotlinx-coroutines-swing = { group = "org.jetbrains.kotlinx", name = "kotlinx-coroutines-swing", version.ref = "kotlinx-coroutines" }
 
 kotlinx-serialization-json = { module = "org.jetbrains.kotlinx:kotlinx-serialization-json", version.ref = "kotlinx-serialization"}
+kotlinx-io = { module = "org.jetbrains.kotlinx:kotlinx-io-core", version.ref = "kotlinx-io"}
 kotlinx-timedate = { module = "org.jetbrains.kotlinx:kotlinx-datetime", version.ref = "kotlinx-timedate"}
+
+kotlinx-serialization-tomlkt = { group = "net.peanuuutz.tomlkt", name = "tomlkt", version.ref = "tomlkt" }
 
 ktor-server-core = { module = "io.ktor:ktor-server-core-jvm", version.ref = "ktor" }
 ktor-server-netty = { module = "io.ktor:ktor-server-netty-jvm", version.ref = "ktor" }
@@ -86,9 +94,10 @@ crypto-core-digest = { group = "org.kotlincrypto.core", name = "digest", version
 crypto-hash-sha2 = { group = "org.kotlincrypto.hash", name = "sha2", version.ref = "crypto" }
 
 multiplatform-settings = { group = "com.russhwolf", name = "multiplatform-settings", version.ref = "multiplatform-settings" }
-multiplatform-settings-noArg = { group = "com.russhwolf", name = "multiplatform-settings-no-arg", version.ref = "multiplatform-settings" }
 multiplatform-settings-serialization = { group = "com.russhwolf", name = "multiplatform-settings-serialization", version.ref = "multiplatform-settings" }
 
+haze = { group = "dev.chrisbanes.haze", name = "haze", version.ref = "haze" }
+haze-materials = { group = "dev.chrisbanes.haze", name = "haze-materials", version.ref = "haze" }
 
 [plugins]
 androidApplication = { id = "com.android.application", version.ref = "agp" }

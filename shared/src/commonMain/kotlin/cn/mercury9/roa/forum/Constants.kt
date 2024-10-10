@@ -1,8 +1,13 @@
 package cn.mercury9.roa.forum
 
 object Constants {
-  const val APP_PACKAGE = "cn.mercury9.roa.forum"
+  object App {
+    const val PACKAGE = "cn.mercury9.roa.forum"
+  }
 
-  const val SERVER_PORT = 8080
+  object Server {
+    const val URL = "local.mercury9.cn"
+    const val HOST = "0.0.0.0"
+    const val PORT = 8080
+  }
 }
-

@@ -1,6 +1,6 @@
 # ROA Forum
 
-[![Kotlin](https://img.shields.io/badge/Kotlin-Multiplatform-7954F6?logo=kotlin)](https://kotlinlang.org/)
+[![Kotlin](https://img.shields.io/badge/2236_lines-Kotlin-7954F6?logo=kotlin)](https://kotlinlang.org/)
 [![Compose Multiplatform](https://img.shields.io/badge/Compose_Multiplatform_UI-5383EC?logo=jetpackcompose&logoColor=ffffff)](https://www.jetbrains.com/lp/compose-multiplatform/)
 
 **「元点论坛」** 多平台客户端及服务器

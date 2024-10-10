@@ -1,3 +1,8 @@
+
+# Server Config
+/.serverConfig/
+
+
 *.iml
 .kotlin/
 .gradle/
