@@ -36,12 +36,12 @@ fun App(
     ))
   }
 
-  val backgroundColor by animateColorAsState(MaterialTheme.colorScheme.background)
-
   ThemeProvider(
     appViewModel.themeConfig.appTheme,
   ) {
     callbackAppTheme(appViewModel.themeConfig.appTheme)
+
+    val backgroundColor by animateColorAsState(MaterialTheme.colorScheme.background)
     Surface(color = backgroundColor) {
       Column {
         if (appInsetTop.value > 0) {
