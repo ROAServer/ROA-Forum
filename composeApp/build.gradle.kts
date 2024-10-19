@@ -83,7 +83,9 @@ kotlin {
       implementation(projects.shared)
     }
     desktopMain.dependencies {
-      implementation(compose.desktop.currentOs)
+      implementation(compose.desktop.currentOs) {
+        exclude(group = "org.jetbrains.compose.material")
+      }
       implementation(libs.kotlinx.coroutines.swing)
 
       // https://github.com/JetBrains/Jewel
