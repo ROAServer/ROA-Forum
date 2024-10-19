@@ -41,7 +41,6 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.rotate
 import androidx.compose.ui.unit.dp
 import org.jetbrains.compose.resources.DrawableResource
-import org.jetbrains.skiko.hostOs
 import cn.mercury9.roa.forum.data.viewModel.AppViewModel
 import cn.mercury9.roa.forum.resources.Res
 import cn.mercury9.roa.forum.resources.arrow_back_24px
@@ -54,9 +53,9 @@ import cn.mercury9.roa.forum.resources.title_setting_theme
 import cn.mercury9.roa.forum.resources.title_window_setting
 import cn.mercury9.roa.forum.ui.theme.ContrastType
 import cn.mercury9.roa.forum.ui.theme.ThemeType
+import cn.mercury9.roa.forum.utils.system.hostOs
 import cn.mercury9.utils.compose.painter
 import cn.mercury9.utils.compose.string
-import cn.mercury9.utils.skiko.isApple
 
 @Composable
 fun SettingsWindow(
@@ -162,7 +161,7 @@ private object SettingWindowComponents {
           appViewModel.navController.navigateUp()
         }) {
           Icon(
-            painter = if (hostOs.isApple()) {
+            painter = if (hostOs.isApple) {
               Res.drawable.arrow_back_ios_new_24px.painter
             } else {
               Res.drawable.arrow_back_24px.painter
