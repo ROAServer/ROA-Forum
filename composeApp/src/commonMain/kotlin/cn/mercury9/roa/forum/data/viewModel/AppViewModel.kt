@@ -9,6 +9,7 @@ import androidx.compose.runtime.setValue
 import androidx.lifecycle.ViewModel
 import androidx.navigation.NavHostController
 import cn.mercury9.roa.forum.Constants
+import cn.mercury9.roa.forum.data.client.HttpService
 import cn.mercury9.roa.forum.data.config.AppConfig
 import cn.mercury9.roa.forum.data.config.ThemeConfig
 import cn.mercury9.roa.forum.data.storage.DataStorage
@@ -19,7 +20,7 @@ import cn.mercury9.roa.forum.ui.window.settings.SettingsWindow
 
 class AppViewModel : ViewModel() {
   private val appConfigManager: DefaultDataStorage<AppConfig> = DefaultDataStorage(
-    "${Constants.APP_PACKAGE}:config.app:",
+    "${Constants.App.PACKAGE}:config.app:",
     AppConfig.serializer(),
   ) {
     AppConfig.default()
@@ -34,7 +35,7 @@ class AppViewModel : ViewModel() {
   }
 
   private val themeConfigManager: DataStorage<ThemeConfig> = DefaultDataStorage(
-    "${Constants.APP_PACKAGE}:config.theme:",
+    "${Constants.App.PACKAGE}:config.theme:",
     ThemeConfig.serializer(),
   ) {
     ThemeConfig.default()
@@ -52,12 +53,9 @@ class AppViewModel : ViewModel() {
     AppLayoutType.Compact
   )
 
-//  var appTheme: AppTheme by mutableStateOf(
-//    themeConfig.appTheme
-//  )
-//    private set
-
   lateinit var navController: NavHostController
+
+  val httpService = HttpService()
 
   enum class AppLayoutType {
     Expanded,
