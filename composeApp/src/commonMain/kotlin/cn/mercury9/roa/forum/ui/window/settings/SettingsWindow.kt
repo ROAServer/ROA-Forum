@@ -1,6 +1,7 @@
 package cn.mercury9.roa.forum.ui.window.settings
 
 import androidx.compose.animation.AnimatedVisibility
+import androidx.compose.animation.animateColorAsState
 import androidx.compose.animation.core.animateFloatAsState
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
@@ -9,6 +10,7 @@ import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
+import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
@@ -25,6 +27,7 @@ import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Scaffold
+import androidx.compose.material3.Surface
 import androidx.compose.material3.Switch
 import androidx.compose.material3.Text
 import androidx.compose.material3.TopAppBar
@@ -59,66 +62,82 @@ import cn.mercury9.utils.skiko.isApple
 fun SettingsWindow(
   appViewModel: AppViewModel
 ) {
+  val backgroundColor by animateColorAsState(MaterialTheme.colorScheme.background)
+
   Scaffold(
     topBar = { SettingWindowComponents.SettingsWindowTopBar(appViewModel) },
   ) {
-    LazyColumn(
-      contentPadding = PaddingValues(top = 80.dp)
+    Surface(
+      color = backgroundColor,
+      modifier = Modifier
+        .fillMaxSize()
     ) {
-      item {
-        SettingWindowComponents.Menu(
-          title = Res.string.title_setting_theme.string
-        ) {
-          SettingWindowComponents.SwitchSetting(
-            text = Res.string.label_setting_theme_dark_follow_system_when_start.string,
-            checked = appViewModel.appConfig.followSystemDarkModeSettingWhenStartApp,
-            onCheckedChange = {
-              appViewModel.setAppConf(appViewModel.appConfig.copy(
-                followSystemDarkModeSettingWhenStartApp = it
-              ))
-            }
-          )
-
-          HorizontalDivider()
-
-          SettingWindowComponents.SwitchSetting(
-            text = Res.string.label_setting_theme_dark.string,
-            checked = appViewModel.themeConfig.darkTheme,
-            enabled = !appViewModel.appConfig.followSystemDarkModeSettingWhenStartApp,
-            onCheckedChange = {
-              appViewModel.setThemeConf(appViewModel.themeConfig.copy(
-                darkTheme = it
-              ))
-            }
-          )
-
-          SettingWindowComponents.DropDownSelectorSetting(
-            text = Res.string.label_setting_theme_type.string,
-            selections = ThemeType.entries.map { themeType ->
-              SettingWindowComponents.DropDownSelection(
-                themeType.name,
-                appViewModel.themeConfig.themeType == themeType,
-              ) {
-                appViewModel.setThemeConf(appViewModel.themeConfig.copy(
-                  themeType = themeType
-                ))
+      LazyColumn(
+        contentPadding = PaddingValues(top = 80.dp)
+      ) {
+        item {
+          SettingWindowComponents.Menu(
+            title = Res.string.title_setting_theme.string
+          ) {
+            SettingWindowComponents.SwitchSetting(
+              text = Res.string.label_setting_theme_dark_follow_system_when_start.string,
+              checked = appViewModel.appConfig.followSystemDarkModeSettingWhenStartApp,
+              onCheckedChange = {
+                appViewModel.setAppConf(
+                  appViewModel.appConfig.copy(
+                    followSystemDarkModeSettingWhenStartApp = it
+                  )
+                )
               }
-            }
-          )
+            )
 
-          SettingWindowComponents.DropDownSelectorSetting(
-            text = Res.string.label_setting_theme_type.string,
-            selections = ContrastType.entries.map { contrastType ->
-              SettingWindowComponents.DropDownSelection(
-                contrastType.name,
-                appViewModel.themeConfig.contrastType == contrastType,
-              ) {
-                appViewModel.setThemeConf(appViewModel.themeConfig.copy(
-                  contrastType = contrastType
-                ))
+            HorizontalDivider()
+
+            SettingWindowComponents.SwitchSetting(
+              text = Res.string.label_setting_theme_dark.string,
+              checked = appViewModel.themeConfig.darkTheme,
+              enabled = !appViewModel.appConfig.followSystemDarkModeSettingWhenStartApp,
+              onCheckedChange = {
+                appViewModel.setThemeConf(
+                  appViewModel.themeConfig.copy(
+                    darkTheme = it
+                  )
+                )
               }
-            }
-          )
+            )
+
+            SettingWindowComponents.DropDownSelectorSetting(
+              text = Res.string.label_setting_theme_type.string,
+              selections = ThemeType.entries.map { themeType ->
+                SettingWindowComponents.DropDownSelection(
+                  themeType.name,
+                  appViewModel.themeConfig.themeType == themeType,
+                ) {
+                  appViewModel.setThemeConf(
+                    appViewModel.themeConfig.copy(
+                      themeType = themeType
+                    )
+                  )
+                }
+              }
+            )
+
+            SettingWindowComponents.DropDownSelectorSetting(
+              text = Res.string.label_setting_theme_type.string,
+              selections = ContrastType.entries.map { contrastType ->
+                SettingWindowComponents.DropDownSelection(
+                  contrastType.name,
+                  appViewModel.themeConfig.contrastType == contrastType,
+                ) {
+                  appViewModel.setThemeConf(
+                    appViewModel.themeConfig.copy(
+                      contrastType = contrastType
+                    )
+                  )
+                }
+              }
+            )
+          }
         }
       }
     }

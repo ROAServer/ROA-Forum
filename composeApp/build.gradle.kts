@@ -1,7 +1,6 @@
 import org.jetbrains.compose.desktop.application.dsl.TargetFormat
 import org.jetbrains.kotlin.gradle.ExperimentalKotlinGradlePluginApi
 import org.jetbrains.kotlin.gradle.dsl.JvmTarget
-import org.jetbrains.kotlin.org.apache.commons.io.output.ByteArrayOutputStream
 
 object Info {
   const val GROUP = "cn.mercury9.roa.forum"
@@ -72,14 +71,25 @@ kotlin {
       implementation(libs.kotlinx.coroutines.core)
       implementation(libs.kotlinx.serialization.json)
 
+      implementation(libs.ktor.client.core)
+      implementation(libs.ktor.client.auth)
+
       implementation(libs.multiplatform.settings)
       implementation(libs.multiplatform.settings.serialization)
+
+      implementation(libs.haze)
+      implementation(libs.haze.materials)
 
       implementation(projects.shared)
     }
     desktopMain.dependencies {
       implementation(compose.desktop.currentOs)
       implementation(libs.kotlinx.coroutines.swing)
+
+      // https://github.com/JetBrains/Jewel
+      implementation("org.jetbrains.jewel:jewel-int-ui-standalone-242:0.25.0")
+      // For custom decorated windows:
+      implementation("org.jetbrains.jewel:jewel-int-ui-decorated-window-242:0.25.0")
     }
   }
 }
@@ -171,37 +181,5 @@ tasks {
       "Replace \"@android:color/white\" " +
           "in vector drawables that download from Google Icons " +
           "to \"#ffffff\""
-  }
-
-  val countKtSourceFileLinesAndWriteToREADME by creating {
-    doLast {
-      val out = ByteArrayOutputStream()
-      val commandCountKt = "git ls-files '*.kt' | xargs cat | wc -l"
-
-      exec {
-        standardOutput = out
-        workingDir = projectDir
-        commandLine("sh", "-c", commandCountKt)
-      }
-
-      val ktLines = out.toString(Charsets.UTF_8).filterNot {
-        it.isWhitespace()
-      }
-      println("$ktLines lines kt")
-
-      val readmeFile = project.file("README.md")
-
-      readmeFile.readText().apply {
-        replace(
-          this.lines().filter {
-            it.startsWith("[![Kotlin](https://img.shields.io/badge/")
-          }[0],
-          "[![Kotlin](https://img.shields.io/badge/${ktLines}_lines-Kotlin-7954F6?logo=kotlin)](https://kotlinlang.org/)"
-        ).also {
-          readmeFile.writeText(it)
-        }
-      }
-
-    }
   }
 }
