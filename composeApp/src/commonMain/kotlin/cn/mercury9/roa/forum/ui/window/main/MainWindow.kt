@@ -1,6 +1,6 @@
 package cn.mercury9.roa.forum.ui.window.main
 
-import androidx.compose.foundation.ExperimentalFoundationApi
+import androidx.compose.animation.animateColorAsState
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
@@ -41,7 +41,6 @@ import cn.mercury9.roa.forum.resources.roa_normal_256x
 import cn.mercury9.utils.compose.painter
 import cn.mercury9.utils.compose.string
 
-@OptIn(ExperimentalFoundationApi::class)
 @Composable
 fun MainWindow(
   appViewModel: AppViewModel,
@@ -79,7 +78,6 @@ fun MainWindow(
 
 private object MainWindowComponents{
 
-  @OptIn(ExperimentalFoundationApi::class)
   @Composable
   fun AppHorizontalLayout(
     pagerState: PagerState,
@@ -99,7 +97,6 @@ private object MainWindowComponents{
     }
   }
 
-  @OptIn(ExperimentalFoundationApi::class)
   @Composable
   fun AppVerticalLayout(
     pagerState: PagerState,
@@ -119,17 +116,20 @@ private object MainWindowComponents{
     }
   }
 
-  @OptIn(ExperimentalFoundationApi::class)
   @Composable
   fun AppNavigationBar(
     pagerState: PagerState,
     tabItemList: List<NavTabItemInfo>,
   ) {
+    val surfaceColor by animateColorAsState(MaterialTheme.colorScheme.surface)
+
     var selectedPageIndex by remember { mutableStateOf(pagerState.currentPage) }
     LaunchedEffect(selectedPageIndex) {
       pagerState.animateScrollToPage(selectedPageIndex)
     }
-    NavigationBar {
+    NavigationBar(
+      containerColor = surfaceColor,
+    ) {
       for (index in tabItemList.indices) {
         val item = tabItemList[index]
         AppNavBarItem(
@@ -161,19 +161,20 @@ private object MainWindowComponents{
     )
   }
 
-  @OptIn(ExperimentalFoundationApi::class)
   @Composable
   fun AppNavigationRail(
     pagerState: PagerState,
     tabItemList: List<NavTabItemInfo>,
   ) {
+    val surfaceColor by animateColorAsState(MaterialTheme.colorScheme.surface)
+
     var selectedPageIndex by remember { mutableStateOf(pagerState.currentPage) }
     LaunchedEffect(selectedPageIndex) {
       pagerState.animateScrollToPage(selectedPageIndex)
     }
 
     Surface(
-      color = MaterialTheme.colorScheme.surface,
+      color = surfaceColor,
       modifier = Modifier
         .width(80.dp),
     ) {
@@ -189,6 +190,7 @@ private object MainWindowComponents{
         HorizontalDivider()
 
         NavigationRail(
+          containerColor = surfaceColor,
           modifier = Modifier
             .padding(top = 8.dp),
         ) {

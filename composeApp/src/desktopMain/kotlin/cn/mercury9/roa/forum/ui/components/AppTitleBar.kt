@@ -1,5 +1,6 @@
 package cn.mercury9.roa.forum.ui.components
 
+import androidx.compose.animation.animateColorAsState
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.window.WindowDraggableArea
@@ -7,8 +8,10 @@ import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.getValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.Color
 import org.jetbrains.jewel.foundation.theme.JewelTheme
 import org.jetbrains.jewel.window.DecoratedWindowScope
 import org.jetbrains.jewel.window.TitleBar
@@ -19,22 +22,24 @@ import org.jetbrains.jewel.window.styling.TitleBarStyle
 
 @Composable
 fun DecoratedWindowScope.AppTitleBar() {
+  val backgroundColor by animateColorAsState(MaterialTheme.colorScheme.background)
+  val outlineColor by animateColorAsState(MaterialTheme.colorScheme.outline)
   TitleBar(
     style = TitleBarStyle(
       colors = TitleBarColors(
-        background = MaterialTheme.colorScheme.background,
-        inactiveBackground = MaterialTheme.colorScheme.background,
-        content = MaterialTheme.colorScheme.onBackground,
-        border = MaterialTheme.colorScheme.outline,
-        fullscreenControlButtonsBackground = MaterialTheme.colorScheme.background,
-        titlePaneButtonHoveredBackground = MaterialTheme.colorScheme.background,
-        titlePaneButtonPressedBackground = MaterialTheme.colorScheme.background,
-        titlePaneCloseButtonHoveredBackground = MaterialTheme.colorScheme.background,
-        titlePaneCloseButtonPressedBackground = MaterialTheme.colorScheme.background,
-        iconButtonHoveredBackground = MaterialTheme.colorScheme.background,
-        iconButtonPressedBackground = MaterialTheme.colorScheme.background,
-        dropdownPressedBackground = MaterialTheme.colorScheme.background,
-        dropdownHoveredBackground = MaterialTheme.colorScheme.background
+        background = backgroundColor,
+        inactiveBackground = backgroundColor,
+        content = backgroundColor,
+        border = outlineColor,
+        fullscreenControlButtonsBackground = backgroundColor,
+        titlePaneButtonHoveredBackground = backgroundColor,
+        titlePaneButtonPressedBackground = backgroundColor,
+        titlePaneCloseButtonHoveredBackground = backgroundColor,
+        titlePaneCloseButtonPressedBackground = backgroundColor,
+        iconButtonHoveredBackground = backgroundColor,
+        iconButtonPressedBackground = backgroundColor,
+        dropdownPressedBackground = backgroundColor,
+        dropdownHoveredBackground = backgroundColor
       ),
       metrics = JewelTheme.defaultTitleBarStyle.metrics,
       icons = JewelTheme.defaultTitleBarStyle.icons,
@@ -47,7 +52,7 @@ fun DecoratedWindowScope.AppTitleBar() {
       .newFullscreenControls(),
   ) {
     WindowDraggableArea {
-      Surface(color = MaterialTheme.colorScheme.background) {
+      Surface(color = Color.Transparent) {
         Row(
           horizontalArrangement = Arrangement.Center,
           verticalAlignment = Alignment.CenterVertically,
