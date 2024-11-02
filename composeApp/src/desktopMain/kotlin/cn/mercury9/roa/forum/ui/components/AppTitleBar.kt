@@ -11,7 +11,6 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.graphics.Color
 import org.jetbrains.jewel.foundation.theme.JewelTheme
 import org.jetbrains.jewel.window.DecoratedWindowScope
 import org.jetbrains.jewel.window.TitleBar
@@ -52,7 +51,7 @@ fun DecoratedWindowScope.AppTitleBar() {
       .newFullscreenControls(),
   ) {
     WindowDraggableArea {
-      Surface(color = Color.Transparent) {
+      Surface(color = backgroundColor) {
         Row(
           horizontalArrangement = Arrangement.Center,
           verticalAlignment = Alignment.CenterVertically,
